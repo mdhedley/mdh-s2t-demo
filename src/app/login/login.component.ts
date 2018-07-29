@@ -15,6 +15,7 @@ export class LoginComponent implements OnInit {
   }
   signInWithGoogle() {
     this.authService.signInWithGoogle().then((res)=>{
+      // Once signed in navigate to dashboard
       this.zone.run(()=>{
         this.router.navigate(['dashboard'])
       })
@@ -22,6 +23,7 @@ export class LoginComponent implements OnInit {
     }).catch((err)=>console.log(err));
   }
   ngOnInit() {
+    // automatically sign in with google
     this.signInWithGoogle()
   }
 

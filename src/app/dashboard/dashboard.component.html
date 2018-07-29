@@ -1,5 +1,5 @@
 
-  
+  <!-- Create a card for each file stored in firestore -->
     <div class="card" *ngFor="let file of files| async">
       <div class="container">
       <a routerLink='/detail/{{ file.uuid }}'>{{file.title}}</a>

@@ -15,7 +15,7 @@ export class DashboardComponent implements OnInit {
    }
 
   ngOnInit() {
-    console.log('I was here')
+    // Get list of file objects from firestore
     this.filesCollection = this.afs.collection<FileReference>('files')
     this.files = this.filesCollection.valueChanges()
 

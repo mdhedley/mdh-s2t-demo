@@ -20,7 +20,7 @@ exports.helloWorld = functions.storage.object().onFinalize((object) => {
     console.log(filePath);
     console.log(fileBucket);
     client = new speech.v1.SpeechClient({})
-
+    // see api docs here: https://cloud.google.com/speech-to-text/docs/reference/libraries
     const audio = {
         uri: `gs://${fileBucket}/${filePath}`
     }
@@ -39,6 +39,7 @@ exports.helloWorld = functions.storage.object().onFinalize((object) => {
     }).then((data)=>{
         response = data[0]
         words = []
+        // Convert the response to plain objects for insert into Firestore
         response.results.forEach(result => {
             result.alternatives[0].words.forEach(word => {
                var plainWord = {

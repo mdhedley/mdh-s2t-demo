@@ -26,13 +26,16 @@ export class DetailFileComponent implements OnInit {
     private storage : AngularFireStorage
   ) { 
   }
+  // Function to define custom styling based on whether the word has been spoken
   positionHighlight(time) {
   
     if (parseInt(time) <= this.trackTime) {
-        return {color:'black'}
+        return {color:'red'}
     }
-    return {color:'red'}
+    return {color:'black'}
   }
+
+  // current time does not update automatically, but you can get the current time from the onTimeUpdate event
   timeUpdate(value) {
     this.trackTime = value.target.currentTime;
   }
@@ -42,10 +45,11 @@ export class DetailFileComponent implements OnInit {
      console.log(this.id)
      this.fileDoc = this.afs.doc<FileReference>('files/' + this.id)
      this.fileRef = this.fileDoc.valueChanges();
+     // grab the requested start time if it exists from the query parameter
      this.route.queryParams.subscribe(params => {
        this.startTime = params['start']
      })
-
+//Get an authenticated audio URL from storage
      this.storage.ref(this.id).getDownloadURL().toPromise().then(url=>{
       this.audioURL = url;
      }

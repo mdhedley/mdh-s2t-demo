@@ -21,13 +21,21 @@ export class UploadComponent implements OnInit {
   ngOnInit() {
   }
   uploadFile() {
+    // Generate UUID for file
     const id = UUID.UUID()
+    // Create a new file reference object
     const fileref = new FileReference;
+    // Initalize as pending
     fileref.status = "Pending"
+    // Set the title to the title from the form
     fileref.title = this.model.title
+    // set the uuid to the generated uuid
     fileref.uuid = id
+    // Create firestore document reference based on the id
     const updDoc = this.afs.doc<FileReference>('files/'+id)
+    // Update the doc reference with contents of object
     updDoc.set(Object.assign({},fileref))
+    // Upload file to firebase storage
     const ref = this.afStorage.ref(id)
     const task = ref.put(this.model.file)
     this.uploadProgress = task.percentageChanges()

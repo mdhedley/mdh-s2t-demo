@@ -1,4 +1,4 @@
-// src/app/services/auth.service.ts
+// loosely based on https://itnext.io/step-by-step-complete-firebase-authentication-in-angular-2-97ca73b8eb32
 import { Injectable } from '@angular/core';
 import { Router } from "@angular/router";
 import { AngularFireAuth } from 'angularfire2/auth';
