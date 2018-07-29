@@ -1,0 +1,6 @@
+<p>
+  <audio controls src="{{audioURL}}" currentTime={{startTime}}  (timeupdate)='timeUpdate($event)'>
+  </audio>
+  <p>
+  <a *ngFor="let word of (fileRef | async)?.words" routerLink="/detail/{{id}}" [queryParams]="{ start:  word.startTime }" [ngStyle]="positionHighlight(word.startTime)">{{word.word}} </a>
+</p>
