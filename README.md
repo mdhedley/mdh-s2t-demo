@@ -1,27 +1,29 @@
-# MdhT2s
+# mdh-s2t-demo
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.8.
+This is a demonstration app for [Google's speech to text api](https://cloud.google.com/speech-to-text/). It's a firebase angular application.
 
-## Development server
+## Setup
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+I've removed my environment files from source control so you'll need to create some of your own. Create the /src/environments directory and add an environment.ts and an environment.prod.ts that looks like the below:
+`export const environment = {
+    production: false,
+    firebase: {
+      apiKey: "xxx",
+      authDomain: "xxx.firebaseapp.com",
+      databaseURL: "https://xxx.firebaseio.com",
+      projectId: "xxx",
+      storageBucket: "gs://xxx.appspot.com",
+      messagingSenderId: "xxx"
+    }
+  };
+`
 
-## Code scaffolding
+Details on how to get the settings for this file can be found in the [firebase documentation](https://firebase.google.com/docs/storage/web/start)
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+You will also need to update .firebaserc with the correct project name
 
-## Build
+## Running Locally - excluding firebase function
+The project can be run locally using the `ng serve` command
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+## Deploying to firebase
+The project can be deployed to your firebase project with `firebase --project <your project> deploy`
